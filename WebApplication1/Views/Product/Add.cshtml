@@ -1,0 +1,23 @@
+﻿@model WebApplication1.Models.Product
+
+<h3>Adicionar Produto</h3>
+<form method="post" asp-controller="product" asp-action="add">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" asp-for="Name" /></td>
+        </tr>
+           <tr>
+            <td>Preço</td>
+            <td><input type="text" asp-for="Price" /></td>
+        </tr>
+           <tr>
+            <td>Status</td>
+            <td><input type="checkbox" asp-for="Status" /></td>
+        </tr>
+          <tr>
+            <td>Enviar</td>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>
