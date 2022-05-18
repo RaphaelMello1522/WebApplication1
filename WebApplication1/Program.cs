@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 using WebApplication1.Services;
+using WebApplication1.Services.Pc;
+using WebApplication1.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ProductService, ProductServiceImpl>();
+builder.Services.AddScoped<ComputerService, ComputerServiceImpl>();
+builder.Services.AddScoped<UsuarioService, UsuarioServiceImpl>();
 
 var app = builder.Build();
 

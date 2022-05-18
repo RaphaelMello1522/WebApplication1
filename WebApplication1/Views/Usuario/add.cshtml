@@ -1,0 +1,25 @@
+﻿@model WebApplication1.Models.Usuario
+
+<h3>Adicionar Usuário</h3>
+<form method="post" asp-controller="usuario" asp-action="add">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" asp-for="Nome" /></td>
+        </tr>
+           <tr>
+            <td>Setor</td>
+            <td><input type="text" asp-for="Setor" /></td>
+        </tr>
+        <tr>
+            <td>Vinculo Computador</td>
+
+            </td>
+        </tr>
+           <tr>
+          <tr>
+            <td>Enviar</td>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>

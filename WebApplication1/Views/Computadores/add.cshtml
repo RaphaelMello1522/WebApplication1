@@ -1,0 +1,56 @@
+﻿@using WebApplication1.Services.User
+@model WebApplication1.Models.Computadores
+
+<h3>Adicionar Computador ao Inventário</h3>
+<form method="post" asp-controller="computadores" asp-action="add">
+    <table border="1">
+        <tr>
+            <td>Patrimonio</td>
+            <td><input type="number" asp-for="NumPatrimonio" /></td>
+        </tr>
+           <tr>
+            <td>Marca</td>
+            <td><input type="text" asp-for="Marca" /></td>
+        </tr>
+           <tr>
+            <td>Modelo</td>
+            <td><input type="text" asp-for="Modelo" /></td>
+        </tr>
+         <tr>
+            <td>Número Serial</td>
+            <td><input type="number" asp-for="NumSerie" /></td>
+        </tr>
+         <tr>
+            <td>Sistema Operacional</td>
+            <td><input type="text" asp-for="So" /></td>
+        </tr>
+         <tr>
+            <td>Memoria RAM GB</td>
+            <td><input type="number" asp-for="MemoriaRam" /></td>
+        </tr>
+        <tr>
+            <td>Processador</td>
+            <td><input type="text" asp-for="Processador" /></td>
+        </tr>
+        <tr>
+            <td>User</td>
+                <td><select asp-for="Usuarios" class="form-control" asp-items="ViewBag.usuarios">
+                    <option data="@ViewBag.usuarios">@ViewBag.usuarios</option>
+                </select></td>
+            
+        </tr>
+          <tr>
+            <td>Enviar</td>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+
+ <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Modelo</label>
+  <input type="email" asp-for="Processador" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+</form>

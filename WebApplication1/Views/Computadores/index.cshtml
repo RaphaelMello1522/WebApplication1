@@ -1,0 +1,41 @@
+﻿<h3>Inventário</h3>
+<a asp-controller="computadores" asp-action="add">Add</a>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Patrimonio</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Serial</th>
+      <th scope="col">S.O</th>
+      <th scope="col">Ram GB</th>
+      <th scope="col">Processador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+       @foreach(var computador in ViewBag.computadores)
+    {
+        <thead>
+        <tr>
+            <td>@computador.IdComputador</td>
+            <td>@computador.NumPatrimonio</td>
+            <td>@computador.Marca</td>
+            <td>@computador.Modelo</td>
+            <td>@computador.NumSerie</td>
+            <td>@computador.So</td>
+            <td>@computador.MemoriaRam</td>
+            <td>@computador.Processador</td>
+           
+            <td>
+                <a asp-controller="computadores" asp-action="delete" asp-route-id="@computador.IdComputador">Excluir</a>
+                <a asp-controller="computadores" asp-action="edit" asp-route-id="@computador.IdComputador">Editar</a>
+            </td>
+        </tr>
+        </thead>
+    }
+    </tr>
+  </tbody>
+</table>

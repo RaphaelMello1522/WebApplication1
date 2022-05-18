@@ -1,0 +1,22 @@
+﻿<h3>Usuários</h3>
+<a asp-controller="usuario" asp-action="add">Add</a>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Setor</th>
+    </tr>    
+    @foreach(var usuario in ViewBag.Usuarios)
+    {
+        <tr>
+            <td>@usuario.Id</td>
+            <td>@usuario.Nome</td>
+            <td>@usuario.Setor</td>
+            <td>@usuario.IdComputador</td>
+            <td>
+                <a asp-controller="usuario" asp-action="delete" asp-route-id="@usuario.Id">Excluir</a>
+                <a asp-controller="usuario" asp-action="edit" asp-route-id="@usuario.Id">Editar</a>
+            </td>
+        </tr>
+    }
+</table>
