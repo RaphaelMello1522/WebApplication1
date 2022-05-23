@@ -5,11 +5,11 @@ namespace WebApplication1.Models
 {
     public partial class Usuario
     {
-        public int Id { get; set; }
-        public string Nome { get; set; } = null!;
-        public string Setor { get; set; } = null!;
-        public int? IdComputador { get; set; }
+        public int IdUsuario { get; set; }
+        public string NomeUsuario { get; set; } = null!;
+        public string SetorUsuario { get; set; } = null!;
+        public int? ComputadorId { get; set; }
 
-        public virtual Computadores? IdComputadorNavigation { get; set; }
+        public virtual Computadores? Computador { get; set; }
     }
 }

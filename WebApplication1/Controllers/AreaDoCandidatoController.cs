@@ -1,25 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication1.Models;
-using WebApplication1.Services;
-using WebApplication1.Services.Pc;
-using WebApplication1.Services.User;
+using WebApplication1.Services.Area_do_Candidato;
 
 namespace WebApplication1.Controllers
 {
-    [Route("usuarios")]
-    public class UsuarioController : Controller
+    [Route("areadocandidato")]
+    public class AreaDoCandidatoController : Controller
     {
-        private UsuarioService usuarioService;
+        private CandidatoService candidatoService;
 
-        public UsuarioController(UsuarioService _usuarioService)
+        public AreaDoCandidatoController(CandidatoService _candidatoService)
         {
-            usuarioService = _usuarioService;
+            candidatoService = _candidatoService;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Usuarios = usuarioService.FindAll();
+            ViewBag.Candidatos = candidatoService.FindAll();
             return View();
         }
 
@@ -27,35 +24,35 @@ namespace WebApplication1.Controllers
         [Route("add")]
         public IActionResult Add()
         {
-            return View("Add", new Usuario());
+            return View("Add", new AreaDoCandidato());
         }
 
         [HttpPost]
         [Route("add")]
-        public IActionResult Add(Usuario usuario)
+        public IActionResult Add(AreaDoCandidato candidato)
         {
-            usuarioService.Create(usuario);
+            candidatoService.Create(candidato);
             return RedirectToAction("index");
         }
         [HttpGet]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            usuarioService.Delete(id);
+            candidatoService.Delete(id);
             return RedirectToAction("index");
         }
         [HttpGet]
         [Route("edit/{id}")]
         public IActionResult Edit(int id)
         {
-            return View("Edit", usuarioService.Find(id));
+            return View("Edit", candidatoService.Find(id));
         }
 
         [HttpPost]
         [Route("edit/{id}")]
-        public IActionResult Edit(int id, Usuario usuario)
+        public IActionResult Edit(int id, AreaDoCandidato candidato)
         {
-            usuarioService.Update(usuario);
+            candidatoService.Update(candidato);
             return RedirectToAction("index");
         }
     }

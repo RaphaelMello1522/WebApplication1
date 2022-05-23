@@ -18,6 +18,8 @@ namespace WebApplication1.Models
         public string? So { get; set; }
         public int? MemoriaRam { get; set; }
         public string? Processador { get; set; }
+        public int? UsuarioId { get; set; }
+        public string? Username { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

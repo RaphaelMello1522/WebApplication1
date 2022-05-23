@@ -15,9 +15,6 @@ namespace WebApplication1.Controllers
             productService = _productService;
         }
 
-        [Route("")]
-        [Route("index")]
-        [Route("~/")]
         public IActionResult Index()
         {
             ViewBag.Products = productService.FindAll();

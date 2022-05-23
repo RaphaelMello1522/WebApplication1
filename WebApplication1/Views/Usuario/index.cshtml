@@ -1,6 +1,6 @@
 ﻿<h3>Usuários</h3>
 <a asp-controller="usuario" asp-action="add">Add</a>
-<table border="1">
+<table id="user" border="1">
     <tr>
         <th>Id</th>
         <th>Nome</th>
@@ -9,14 +9,15 @@
     @foreach(var usuario in ViewBag.Usuarios)
     {
         <tr>
-            <td>@usuario.Id</td>
-            <td>@usuario.Nome</td>
-            <td>@usuario.Setor</td>
-            <td>@usuario.IdComputador</td>
+            <td>@usuario.IdUsuario</td>
+            <td>@usuario.NomeUsuario</td>
+            <td>@usuario.SetorUsuario</td>
+            <td>@usuario.ComputadorId</td>
             <td>
-                <a asp-controller="usuario" asp-action="delete" asp-route-id="@usuario.Id">Excluir</a>
-                <a asp-controller="usuario" asp-action="edit" asp-route-id="@usuario.Id">Editar</a>
+                <a asp-controller="usuario" asp-action="delete" asp-route-id="@usuario.IdUsuario">Excluir</a>
+                <a asp-controller="usuario" asp-action="edit" asp-route-id="@usuario.IdUsuario">Editar</a>
             </td>
         </tr>
     }
 </table>
+

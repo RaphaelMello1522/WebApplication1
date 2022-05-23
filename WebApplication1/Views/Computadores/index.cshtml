@@ -1,7 +1,7 @@
 ﻿<h3>Inventário</h3>
 <a asp-controller="computadores" asp-action="add">Add</a>
 
-  <table class="table">
+  <table id="computadores" class="table">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -12,6 +12,7 @@
       <th scope="col">S.O</th>
       <th scope="col">Ram GB</th>
       <th scope="col">Processador</th>
+      <th scope="col">Usuario Atual</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,9 @@
             <td>@computador.So</td>
             <td>@computador.MemoriaRam</td>
             <td>@computador.Processador</td>
+            <td>@computador.Username</td>
+
+
            
             <td>
                 <a asp-controller="computadores" asp-action="delete" asp-route-id="@computador.IdComputador">Excluir</a>
@@ -39,3 +43,19 @@
     </tr>
   </tbody>
 </table>
+
+
+<link href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+
+    <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+        $("#computadores").DataTable();
+        });
+    </script>
+
+}
+

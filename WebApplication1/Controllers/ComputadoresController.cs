@@ -11,17 +11,24 @@ namespace WebApplication1.Controllers
     public class ComputadoresController : Controller
     {
 
-        private ComputerService computerService;
 
-        public ComputadoresController(ComputerService _computerService)
+        private ComputerService computerService;
+        private DatabaseContext databaseContext;
+        private UsuarioService usuarioService;
+
+
+        public ComputadoresController(ComputerService _computerService, DatabaseContext _db, UsuarioService _usuarioService)
         {
             computerService = _computerService;
+            databaseContext = _db;
+            usuarioService = _usuarioService;
+            ViewBag.Usuario = usuarioService.FindAll();
         }
 
         public IActionResult Index()
         {
-
             ViewBag.Computadores = computerService.FindAll();
+
             return View();
         }
 
@@ -29,12 +36,17 @@ namespace WebApplication1.Controllers
         [Route("add")]
         public IActionResult Add()
         {
+            ViewBag.Usuario = usuarioService.FindAll();
+            ViewBag.Username = new SelectList(databaseContext.Usuarios, "NomeUsuario", "NomeUsuario");
+
             return View("Add", new Computadores());
         }
 
+
+
         [HttpPost]
         [Route("add")]
-        public IActionResult Add(Computadores computadores)
+        public IActionResult Add(Computadores computadores, string UsuarioId)
         {
             computerService.Create(computadores);
             return RedirectToAction("index");

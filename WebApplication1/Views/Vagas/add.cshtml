@@ -1,0 +1,23 @@
+﻿@model WebApplication1.Models.Vaga
+
+<h3>Adicionar Vaga</h3>
+<form method="post" asp-controller="vagas" asp-action="add">
+    <table border="1">
+        <tr>
+            <td>Nome da Vaga</td>
+            <td><input type="text" asp-for="NomeVaga" /></td>
+        </tr>
+           <tr>
+            <td>Requisitos</td>
+            <td><input type="text" asp-for="RequisitosVaga" /></td>
+        </tr>
+           <tr>
+            <td>Descrição</td>
+            <td><input type="text" asp-for="DescricaoVaga" /></td>
+        </tr>
+          <tr>
+            <td>Enviar</td>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>

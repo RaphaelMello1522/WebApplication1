@@ -1,0 +1,22 @@
+﻿<header>
+    <h3 align="center">Vagas Disponíveis</h3>
+    <a asp-controller="vagas" asp-action="add">Adicionar Vaga</a>
+</header>
+     
+
+  @foreach(var vaga in ViewBag.Vagas)
+    {
+        <div class="d-xxl-inline-flex">
+        <div class="card" style="width: 18rem; display:flex;">
+        <img src="https://tm.ibxk.com.br/2019/12/06/06110349443120.jpg?ims=1120x420" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">@vaga.NomeVaga</h5>
+              <p class="card-text">Requisitos: @vaga.RequisitosVaga</p>
+               <a href="#" class="btn btn-primary">Ver detalhes</a>
+                <a asp-controller="vagas" asp-action="delete" asp-route-id="@vaga.IdVaga">Excluir</a>
+                <a asp-controller="vagas" asp-action="edit" asp-route-id="@vaga.IdVaga">Editar</a>
+          </div>
+        </div>
+        </div>
+
+    }

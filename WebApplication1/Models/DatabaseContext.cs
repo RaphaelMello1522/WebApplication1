@@ -16,9 +16,11 @@ namespace WebApplication1.Models
         {
         }
 
+        public virtual DbSet<AreaDoCandidato> AreaDoCandidatos { get; set; } = null!;
         public virtual DbSet<Computadores> Computadores { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
+        public virtual DbSet<Vaga> Vagas { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +33,30 @@ namespace WebApplication1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AreaDoCandidato>(entity =>
+            {
+                entity.HasKey(e => e.IdCandidato)
+                    .HasName("PK__AreaDoCa__D55989051E22106C");
+
+                entity.ToTable("AreaDoCandidato");
+
+                entity.Property(e => e.CpfCandidato)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EmailCandidato)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NomeCandidato)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TelefoneCandidato)
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Computadores>(entity =>
             {
                 entity.HasKey(e => e.IdComputador)
@@ -63,6 +89,10 @@ namespace WebApplication1.Models
                     .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("SO");
+
+                entity.Property(e => e.Username)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -76,22 +106,39 @@ namespace WebApplication1.Models
 
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.Property(e => e.IdComputador).HasColumnName("Id_computador");
+                entity.HasKey(e => e.IdUsuario)
+                    .HasName("PK__Usuarios__5B65BF97C7325C8E");
 
-                entity.Property(e => e.Nome)
+                entity.Property(e => e.NomeUsuario)
                     .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nome");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Setor)
+                entity.Property(e => e.SetorUsuario)
                     .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("setor");
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.IdComputadorNavigation)
+                entity.HasOne(d => d.Computador)
                     .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.IdComputador)
-                    .HasConstraintName("FK__Usuarios__Id_com__5BE2A6F2");
+                    .HasForeignKey(d => d.ComputadorId)
+                    .HasConstraintName("FK__Usuarios__Comput__02FC7413");
+            });
+
+            modelBuilder.Entity<Vaga>(entity =>
+            {
+                entity.HasKey(e => e.IdVaga)
+                    .HasName("PK__Vagas__A848DC3E3CDFF396");
+
+                entity.Property(e => e.DescricaoVaga)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NomeVaga)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequisitosVaga)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

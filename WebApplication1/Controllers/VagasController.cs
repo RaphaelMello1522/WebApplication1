@@ -1,25 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication1.Models;
-using WebApplication1.Services;
-using WebApplication1.Services.Pc;
-using WebApplication1.Services.User;
+using WebApplication1.Services.Recrutamento;
 
 namespace WebApplication1.Controllers
 {
-    [Route("usuarios")]
-    public class UsuarioController : Controller
+    [Route("vagas")]
+    public class VagasController : Controller
     {
-        private UsuarioService usuarioService;
+        private VagaService vagaService;
 
-        public UsuarioController(UsuarioService _usuarioService)
+        public VagasController(VagaService _vagaService)
         {
-            usuarioService = _usuarioService;
+            vagaService = _vagaService;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Usuarios = usuarioService.FindAll();
+            ViewBag.Vagas = vagaService.FindAll();
             return View();
         }
 
@@ -27,35 +24,35 @@ namespace WebApplication1.Controllers
         [Route("add")]
         public IActionResult Add()
         {
-            return View("Add", new Usuario());
+            return View("Add", new Vaga());
         }
 
         [HttpPost]
         [Route("add")]
-        public IActionResult Add(Usuario usuario)
+        public IActionResult Add(Vaga vaga)
         {
-            usuarioService.Create(usuario);
+            vagaService.Create(vaga);
             return RedirectToAction("index");
         }
         [HttpGet]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            usuarioService.Delete(id);
+            vagaService.Delete(id);
             return RedirectToAction("index");
         }
         [HttpGet]
         [Route("edit/{id}")]
         public IActionResult Edit(int id)
         {
-            return View("Edit", usuarioService.Find(id));
+            return View("Edit", vagaService.Find(id));
         }
 
         [HttpPost]
         [Route("edit/{id}")]
-        public IActionResult Edit(int id, Usuario usuario)
+        public IActionResult Edit(int id, Vaga vaga)
         {
-            usuarioService.Update(usuario);
+            vagaService.Update(vaga);
             return RedirectToAction("index");
         }
     }

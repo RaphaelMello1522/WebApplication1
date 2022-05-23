@@ -1,6 +1,9 @@
 ﻿@using WebApplication1.Services.User
 @model WebApplication1.Models.Computadores
 
+
+
+
 <h3>Adicionar Computador ao Inventário</h3>
 <form method="post" asp-controller="computadores" asp-action="add">
     <table border="1">
@@ -32,14 +35,11 @@
             <td>Processador</td>
             <td><input type="text" asp-for="Processador" /></td>
         </tr>
-        <tr>
-            <td>User</td>
-                <td><select asp-for="Usuarios" class="form-control" asp-items="ViewBag.usuarios">
-                    <option data="@ViewBag.usuarios">@ViewBag.usuarios</option>
-                </select></td>
-            
-        </tr>
           <tr>
+            <td>UserName</td>
+            <td><select asp-for="Username" asp-items="ViewBag.Username">Selecione um Usuário</select></td>
+          <tr>
+
             <td>Enviar</td>
             <td><input type="submit" value="Save" /></td>
         </tr>
@@ -54,3 +54,7 @@
   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 </form>
+
+@{
+    List<Usuario> usuario;
+}        
