@@ -12,10 +12,24 @@
           <div class="card-body">
             <h5 class="card-title">@vaga.NomeVaga</h5>
               <p class="card-text">Requisitos: @vaga.RequisitosVaga</p>
-               <a href="#" class="btn btn-primary">Ver detalhes</a>
+               <a class="btn btn-primary" action="@vaga.DescricaoVaga">Ver detalhes</a>
+                <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                 <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         Ver mais!
+                    </button>
+                 </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <strong>@vaga.DescricaoVaga</strong>
+                 </div>
+                </div>
+                </div>     
                 <a asp-controller="vagas" asp-action="delete" asp-route-id="@vaga.IdVaga">Excluir</a>
                 <a asp-controller="vagas" asp-action="edit" asp-route-id="@vaga.IdVaga">Editar</a>
           </div>
+        </div>
         </div>
         </div>
 
