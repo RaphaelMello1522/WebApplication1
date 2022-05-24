@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WebApplication1.Models
 {
-    public partial class DatabaseContext : DbContext
+    public partial class DatabaseContext : IdentityDbContext    
     {
-        public DatabaseContext()
-        {
-        }
+
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
@@ -33,6 +32,7 @@ namespace WebApplication1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AreaDoCandidato>(entity =>
             {
                 entity.HasKey(e => e.IdCandidato)
