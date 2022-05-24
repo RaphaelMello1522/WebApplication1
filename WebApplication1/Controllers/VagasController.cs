@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Services.Recrutamento;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Policy ="readpolicy")]
     [Route("vagas")]
     public class VagasController : Controller
     {

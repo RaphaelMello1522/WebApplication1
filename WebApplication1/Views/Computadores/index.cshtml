@@ -1,6 +1,9 @@
-﻿<h3>Inventário</h3>
+﻿@if (User.IsInRole("Admin"))
+{
+    <h2>ADM</h2>
 <a asp-controller="computadores" asp-action="add">Add</a>
-
+}
+<h3>Inventário</h3>
   <table id="computadores" class="table">
   <thead>
     <tr>
@@ -12,7 +15,8 @@
       <th scope="col">S.O</th>
       <th scope="col">Ram GB</th>
       <th scope="col">Processador</th>
-      <th scope="col">Usuario Atual</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Setor</th>
     </tr>
   </thead>
   <tbody>
@@ -30,13 +34,17 @@
             <td>@computador.MemoriaRam</td>
             <td>@computador.Processador</td>
             <td>@computador.Username</td>
+            <td>@computador.UserSector</td>
 
 
-           
-            <td>
+           @if (User.IsInRole("Admin"))
+            {
+                <td>
                 <a asp-controller="computadores" asp-action="delete" asp-route-id="@computador.IdComputador">Excluir</a>
                 <a asp-controller="computadores" asp-action="edit" asp-route-id="@computador.IdComputador">Editar</a>
-            </td>
+                </td>  
+            }
+          
         </tr>
         </thead>
     }

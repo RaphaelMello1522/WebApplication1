@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WebApplication1.Models
 {
-    public partial class DatabaseContext : IdentityDbContext    
+    public partial class DatabaseContext : IdentityDbContext
     {
-
+        public DatabaseContext()
+        {
+        }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
@@ -57,6 +59,7 @@ namespace WebApplication1.Models
                     .IsUnicode(false);
             });
 
+
             modelBuilder.Entity<Computadores>(entity =>
             {
                 entity.HasKey(e => e.IdComputador)
@@ -90,6 +93,10 @@ namespace WebApplication1.Models
                     .IsUnicode(false)
                     .HasColumnName("SO");
 
+                entity.Property(e => e.UserSector)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -108,6 +115,8 @@ namespace WebApplication1.Models
             {
                 entity.HasKey(e => e.IdUsuario)
                     .HasName("PK__Usuarios__5B65BF97C7325C8E");
+
+                entity.HasIndex(e => e.ComputadorId, "IX_Usuarios_ComputadorId");
 
                 entity.Property(e => e.NomeUsuario)
                     .HasMaxLength(250)

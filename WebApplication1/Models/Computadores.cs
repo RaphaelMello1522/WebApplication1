@@ -20,6 +20,7 @@ namespace WebApplication1.Models
         public string? Processador { get; set; }
         public int? UsuarioId { get; set; }
         public string? Username { get; set; }
+        public string? UserSector { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

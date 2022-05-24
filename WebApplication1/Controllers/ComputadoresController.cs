@@ -38,6 +38,7 @@ namespace WebApplication1.Controllers
         {
             ViewBag.Usuario = usuarioService.FindAll();
             ViewBag.Username = new SelectList(databaseContext.Usuarios, "NomeUsuario", "NomeUsuario");
+            ViewBag.UsernameSetor = new SelectList(databaseContext.Usuarios, "SetorUsuario", "SetorUsuario");
 
             return View("Add", new Computadores());
         }

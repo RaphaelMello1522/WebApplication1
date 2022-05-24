@@ -167,12 +167,10 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -209,12 +207,10 @@ namespace WebApplication1.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -306,6 +302,11 @@ namespace WebApplication1.Migrations
                         .HasColumnType("varchar(250)")
                         .HasColumnName("SO");
 
+                    b.Property<string>("UserSector")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("Username")
                         .HasMaxLength(50)
                         .IsUnicode(false)
@@ -371,7 +372,7 @@ namespace WebApplication1.Migrations
                     b.HasKey("IdUsuario")
                         .HasName("PK__Usuarios__5B65BF97C7325C8E");
 
-                    b.HasIndex("ComputadorId");
+                    b.HasIndex(new[] { "ComputadorId" }, "IX_Usuarios_ComputadorId");
 
                     b.ToTable("Usuarios");
                 });

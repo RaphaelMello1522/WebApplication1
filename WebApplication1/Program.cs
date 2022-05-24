@@ -17,9 +17,10 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<DatabaseContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddDefaultUI()
+    .AddEntityFrameworkStores<DatabaseContext>()
+    .AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ProductService, ProductServiceImpl>();
@@ -27,6 +28,13 @@ builder.Services.AddScoped<ComputerService, ComputerServiceImpl>();
 builder.Services.AddScoped<UsuarioService, UsuarioServiceImpl>();
 builder.Services.AddScoped<VagaService, VagaServiceImpl>();
 builder.Services.AddScoped<CandidatoService, CandidatoServiceImpl>();
+
+builder.Services.AddAuthorization(options => {
+    options.AddPolicy("readpolicy",
+        builder => builder.RequireRole("Admin", "Manager", "User"));
+    options.AddPolicy("writepolicy",
+        builder => builder.RequireRole("Admin", "Manager"));
+});
 
 var app = builder.Build();
 
