@@ -1,0 +1,48 @@
+﻿@model List<string>
+
+    
+@{
+    ViewData["Title"] = "Adicionar regra ao usuario";
+}
+
+<h3 class="text-center">Usuário: <b>@ViewBag.UserName</b></h3>
+<hr/>
+
+    @await Html.PartialAsync("_TopMenuPartial")
+
+
+<div class="row">
+        <div class="col-12">
+            @if (Model.Count == 0)
+            {
+                <p>No roles</p>
+            }
+            else
+            {
+                <h3>Roles</h3>
+                <table class="table">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>Role</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var u in Model)
+                        {
+                            <tr>
+                                <td>@u</td>
+                                <td>
+                                    <a class="btn btn-success"
+                                    asp-route-role="@u"
+                                    asp-action="RemoveUserRole"
+                                    onclick="return confirm('tem certeza?')">Remover</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        </div>
+        

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApplication1.Controllers
 {
@@ -52,6 +53,17 @@ namespace WebApplication1.Controllers
         {
             var roles = roleManager.Roles.ToList();
             return View(roles);
+        }
+
+        [HttpGet]
+        public IActionResult AddUserToRole()
+        {
+            var roles = roleManager.Roles.ToList();
+            var users = userManager.Users.ToList();
+
+            ViewBag.Users = new SelectList(users, "Id" , "UserName");
+            ViewBag.Roles = new SelectList(roles, "Name", "Name");
+            return View();
         }
     }
 }
