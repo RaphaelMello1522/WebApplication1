@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -64,6 +65,37 @@ namespace WebApplication1.Controllers
             ViewBag.Users = new SelectList(users, "Id" , "UserName");
             ViewBag.Roles = new SelectList(roles, "Name", "Name");
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUserToRole(UserRole userRole)
+        {
+            var user = await userManager.FindByIdAsync(userRole.UserId);
+
+            await userManager.AddToRoleAsync(user, userRole.RoleName);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveUserRole(string role, string userName)
+        {
+            var user = await userManager.FindByNameAsync(userName);
+
+            var result = await userManager.RemoveFromRoleAsync(user, role);
+
+            return RedirectToAction(nameof(Details),new { userId = user.Id });
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveRole(string role)
+        {
+            var roleToDelete = await roleManager.FindByNameAsync(role);
+
+            var result = await roleManager.DeleteAsync(roleToDelete);
+
+            return RedirectToAction(nameof(DisplayRoles));
         }
     }
 }
