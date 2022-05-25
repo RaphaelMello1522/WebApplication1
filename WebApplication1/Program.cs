@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
@@ -29,9 +30,10 @@ builder.Services.AddScoped<UsuarioService, UsuarioServiceImpl>();
 builder.Services.AddScoped<VagaService, VagaServiceImpl>();
 builder.Services.AddScoped<CandidatoService, CandidatoServiceImpl>();
 
+
 builder.Services.AddAuthorization(options => {
     options.AddPolicy("readpolicy",
-        builder => builder.RequireRole("Admin", "Manager", "User"));
+        builder => builder.RequireRole("Admin", "Manager", "Candidato"));
     options.AddPolicy("writepolicy",
         builder => builder.RequireRole("Admin", "Manager"));
 });
