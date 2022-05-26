@@ -1,0 +1,70 @@
+﻿@model FileUploadViewModel 
+@using WebApplication1.Services.User
+@using WebApplication1.Models
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h4>Envie anexos por aqui!</h4>
+<hr />
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible" style="margin-top:20px">
+        @ViewBag.Message
+    </div>
+}
+ 
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="files" multiple required />
+    <input type="text" autocomplete="off" placeholder="Insira a descrição do arquivo" name="description" required />
+    <input type="date" autocomplete="off" placeholder="Insira uma data de vencimento" name="vencimento" required />
+    <select asp-items="ViewBag.Username" placeholder="Nome do Colaborador" name="solicitante" required >Selecione o colab</select>
+    <button class="btn btn-success" type="submit" asp-controller="File" asp-action="UploadToDatabase">Enviar</button>
+</form>
+
+
+ @if (User.IsInRole("Admin"))
+ {
+<hr />
+<h4>Anexos no Banco de Dados</h4>
+@if (Model.FilesOnDatabase.Count == 0)
+{
+    <caption>No Records Found</caption>
+}
+else
+{
+    <caption>Lista de Anexos</caption>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Tipo de Arquivo</th>
+                <th>Criado em:</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.FilesOnDatabase)
+            {
+                <tr>
+                    <th>@file.Id</th>
+                    <td>@file.Name</td>
+                    <td>@file.Description</td>
+                    <td>@file.FileType</td>
+                    <td>@file.CreatedOn</td>
+                    <td>@file.Solicitante</td>
+                    <td>@file.vencimento</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromDatabase" asp-route-id="@file.Id">Download</a>
+                        <a type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromDatabase" asp-route-id="@file.Id">Excluir</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+}

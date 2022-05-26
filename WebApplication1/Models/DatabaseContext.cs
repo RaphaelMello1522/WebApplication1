@@ -22,6 +22,8 @@ namespace WebApplication1.Models
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
         public virtual DbSet<Vaga> Vagas { get; set; } = null!;
+        public virtual DbSet<FileModel> FileModels { get; set; } = null!;
+        public virtual DbSet<FileOnDatabaseModel> FilesOnDatabase { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
