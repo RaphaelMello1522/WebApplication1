@@ -16,11 +16,21 @@
  
 
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="files" multiple required />
-    <input type="text" autocomplete="off" placeholder="Insira a descrição do arquivo" name="description" required />
-    <input type="date" autocomplete="off" placeholder="Insira uma data de vencimento" name="vencimento" required />
-    <select asp-items="ViewBag.Username" placeholder="Nome do Colaborador" name="solicitante" required >Selecione o colab</select>
+
+    <input class="form-control" type="file" name="files" multiple required />
+    <input class="form-control" type="text" autocomplete="off" placeholder="Insira a descrição do arquivo" name="description" required />
+    <input class="form-control" type="date" autocomplete="off" placeholder="Insira uma data de vencimento" name="vencimento" required />
+    <select class="form-control" asp-items="ViewBag.Users" placeholder="Nome do Colaborador" name="solicitante" required >Selecione o colab</select>
+    <input class="form-control" type="text" autocomplete="off" placeholder="Setor" name="setor" required />
+    <input class="form-control" type="text" autocomplete="off" placeholder="Empresa" name="empresa" required />
+    <input class="form-control" type="text" autocomplete="off" placeholder="Email" name="email" required />
+    <input class="form-control" type="text" autocomplete="off" placeholder="Fornecedor" name="fornecedor" required />
+    <input class="form-control" type="text" autocomplete="off" placeholder="Descrição da Nota" name="descricao" required />
+    <input class="form-control" type="text" autocomplete="off" placeholder="Valor da Nota" name="valor" required />
+
+    <div>
     <button class="btn btn-success" type="submit" asp-controller="File" asp-action="UploadToDatabase">Enviar</button>
+    </div>
 </form>
 
 
@@ -41,8 +51,13 @@ else
                 <th>#</th>
                 <th>Nome</th>
                 <th>Descrição</th>
-                <th>Tipo de Arquivo</th>
-                <th>Criado em:</th>
+                <th>Arquivo</th>
+                <th>Enviado em:</th>
+                <th>Solicitante</th>
+                <th>Empresa</th>
+                <th>Descrição</th>
+                <th>R$</th>
+                <th>Vencimento</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -56,6 +71,9 @@ else
                     <td>@file.FileType</td>
                     <td>@file.CreatedOn</td>
                     <td>@file.Solicitante</td>
+                    <td>@file.Empresa</td>
+                    <td>@file.Descricao</td>
+                    <td>@file.valor</td>
                     <td>@file.vencimento</td>
                     <td>
                         <a type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromDatabase" asp-route-id="@file.Id">Download</a>

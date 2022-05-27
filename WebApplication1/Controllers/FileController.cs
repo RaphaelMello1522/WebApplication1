@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,23 +13,35 @@ namespace WebApplication1.Controllers
     {
             private readonly DatabaseContext context;
             private UsuarioService usuarioService;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public FileController(DatabaseContext context, UsuarioService _usuarioService)
+        public FileController(DatabaseContext context, UsuarioService _usuarioService, UserManager<IdentityUser> userManager,
+                                            RoleManager<IdentityRole> roleManager)
             {
                 this.context = context;
                 usuarioService = _usuarioService;
-            }
+                this.userManager = userManager;
+                this.roleManager = roleManager;
+
+        }
             public async Task<IActionResult> Index()
             {
                 var fileuploadViewModel = await LoadAllFiles();
                 ViewBag.Message = TempData["Message"];
                 ViewBag.Usuario = usuarioService.FindAll();
-                return View(fileuploadViewModel);
+                var users = userManager.Users.ToList();
+
+            return View(fileuploadViewModel);
             }
            
             [HttpPost]
-            public async Task<IActionResult> UploadToDatabase(List<IFormFile> files, string description, string solicitante, string vencimento)
+            public async Task<IActionResult> UploadToDatabase(List<IFormFile> files, string description,
+                string solicitante, string vencimento, string setor,
+                string empresa, string email, string fornecedor, string descricao, string valor)
             {
+            var users = userManager.Users.ToList();
+            ViewBag.Users = new SelectList(users, "UserName", "UserName");
             ViewBag.Usuario = usuarioService.FindAll();
             ViewBag.Username = new SelectList(context.Usuarios, "NomeUsuario", "NomeUsuario");
             foreach (var file in files)
@@ -43,6 +56,14 @@ namespace WebApplication1.Controllers
                     Name = fileName,
                     Description = description,
                     Solicitante = solicitante,
+                    Setor = setor,
+                    Empresa = empresa,
+                    Email = email,
+                    Fornecedor = fornecedor,
+                    Descricao = descricao,
+                    valor = valor
+
+
                     
                    
                         
@@ -64,6 +85,10 @@ namespace WebApplication1.Controllers
 
             private async Task<FileUploadViewModel> LoadAllFiles()
             {
+            var users = userManager.Users.ToList();
+
+            ViewBag.Users = new SelectList(users, "UserName", "UserName");
+
             ViewBag.Username = new SelectList(context.Usuarios, "NomeUsuario", "NomeUsuario");
 
             var viewModel = new FileUploadViewModel();
