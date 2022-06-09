@@ -12,8 +12,8 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220526181946_Att3")]
-    partial class Att3
+    [Migration("20220609123913_09-06-22")]
+    partial class _090622
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -304,6 +304,9 @@ namespace WebApplication1.Migrations
                         .HasColumnType("varchar(250)")
                         .HasColumnName("SO");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserSector")
                         .HasMaxLength(50)
                         .IsUnicode(false)
@@ -334,12 +337,21 @@ namespace WebApplication1.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Empresa")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Extension")
@@ -350,9 +362,30 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Fornecedor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Setor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Solicitante")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UploadedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("valor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("vencimento")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

@@ -23,5 +23,14 @@ namespace WebApplication1.Models
         public string? UserSector { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
+
+        public PCSituacao Status { get; set; }
+    }
+
+    public enum PCSituacao
+    {
+        Ocupado,
+        Disponível,
+        Manutenção
     }
 }

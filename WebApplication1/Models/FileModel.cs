@@ -17,5 +17,16 @@
         public string? valor { get; set; }
         public DateTime? vencimento { get; set; }
         public DateTime? CreatedOn { get; set; }
+
+        public NotaStatus Status { get; set; }
+    }
+
+    public enum NotaStatus
+    {
+        Enviado,
+        Analise,
+        Aprovado,
+        Negado
+
     }
 }

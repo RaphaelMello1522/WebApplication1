@@ -4,7 +4,7 @@
 
 namespace WebApplication1.Migrations
 {
-    public partial class FileUploadATT : Migration
+    public partial class _090622 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

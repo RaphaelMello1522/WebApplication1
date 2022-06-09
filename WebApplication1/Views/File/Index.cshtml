@@ -59,6 +59,7 @@ else
                 <th>R$</th>
                 <th>Vencimento</th>
                 <th>Ações</th>
+                <th><button type="submit" asp-controller="File" asp-action="UploadToDatabase">Salvar Alterações</button></th>
             </tr>
         </thead>
         <tbody>
@@ -75,7 +76,15 @@ else
                     <td>@file.Descricao</td>
                     <td>@file.valor</td>
                     <td>@file.vencimento</td>
+                    <td>@file.Status</td>
                     <td>
+                            @using (Html.BeginForm("Edit", "File"))
+                            {
+                                
+                            }
+                        @Html.RadioButtonFor(Model => file.Status, "1")Aprovado
+                        @Html.RadioButtonFor(Model => file.Status, "2")Análise
+                        @Html.RadioButtonFor(Model => file.Status, "3")Negar
                         <a type="button" class="btn btn-primary" asp-controller="File" asp-action="DownloadFileFromDatabase" asp-route-id="@file.Id">Download</a>
                         <a type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromDatabase" asp-route-id="@file.Id">Excluir</a>
                     </td>

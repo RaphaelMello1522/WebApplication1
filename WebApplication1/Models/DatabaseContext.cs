@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WebApplication1.Models;
 
 namespace WebApplication1.Models
 {
@@ -156,5 +157,7 @@ namespace WebApplication1.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<WebApplication1.Models.Contact>? Contact { get; set; }
     }
 }

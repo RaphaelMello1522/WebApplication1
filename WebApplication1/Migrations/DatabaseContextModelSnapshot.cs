@@ -302,6 +302,9 @@ namespace WebApplication1.Migrations
                         .HasColumnType("varchar(250)")
                         .HasColumnName("SO");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserSector")
                         .HasMaxLength(50)
                         .IsUnicode(false)
@@ -369,6 +372,9 @@ namespace WebApplication1.Migrations
 
                     b.Property<string>("Solicitante")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("UploadedBy")
                         .HasColumnType("nvarchar(max)");
