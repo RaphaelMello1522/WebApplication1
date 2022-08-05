@@ -1,9 +1,5 @@
-﻿@if (User.IsInRole("Admin"))
-{
-    <h2>ADM</h2>
+﻿<h3>Inventário</h3>
 <a asp-controller="computadores" asp-action="add">Add</a>
-}
-<h3>Inventário</h3>
   <table id="computadores" class="table">
   <thead>
     <tr>
@@ -37,13 +33,12 @@
             <td>@computador.UserSector</td>
 
 
-           @if (User.IsInRole("Admin"))
-            {
+            
                 <td>
                 <a asp-controller="computadores" asp-action="delete" asp-route-id="@computador.IdComputador">Excluir</a>
                 <a asp-controller="computadores" asp-action="edit" asp-route-id="@computador.IdComputador">Editar</a>
                 </td>  
-            }
+            
           
         </tr>
         </thead>
